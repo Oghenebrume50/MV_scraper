@@ -14,5 +14,7 @@ pp 'gjgjnjgk'
 
 $browser.link(text: 'Code Review Requests').click
 
+pp $browser.span(text: 'No Available Reviews').exist?
+
 Pry.start(binding)
 $browser.close
