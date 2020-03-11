@@ -2,8 +2,7 @@
 
 require 'watir'
 require 'pry'
-require 'net/http'
-require 'uri'
+require 'twilio-ruby'
 
 require_relative 'login.rb'
 # user = Login.new(:pass => '123younG', :email => 'raphlbrume@gmail.com')
@@ -26,23 +25,15 @@ require_relative 'login.rb'
 # $browser.close
 # pp 'gjgjnjgk'
 
+account_sid = 'ACf9ada9c86ca52fd8bf1bd28236c42fbd'
+auth_token = '83161cbdc04b2c3a1471e656d914cf53'
+client = Twilio::REST::Client.new(account_sid, auth_token)
 
-v = Net::HTTP.post URI('https://api.twilio.com/2010-04-01/Accounts/ACf9ada9c86ca52fd8bf1bd28236c42fbd/Messages.json'),
-               { "Body" => "McAvoy or Stewart? These timelines can get so confusing.", 
-                "From" => "+12542062911",
-                "StatusCallback" => "http://postb.in/1234abcd",
-                "To" => "+2347061628517",
-                "u" => "ACf9ada9c86ca52fd8bf1bd28236c42fbd",
-                "password" => "83161cbdc04b2c3a1471e656d914cf53"
-               }.to_json,
-               "Content-Type" => "application/json"
-puts v
-v.each {|i,v| puts i,v}
-# #Pry.start(binding)
-# curl -X POST 
-# https://api.twilio.com/2010-04-01/Accounts/ACf9ada9c86ca52fd8bf1bd28236c42fbd/Messages.json 
-# --data-urlencode "Body=McAvoy or Stewart? These timelines can get so confusing." 
-# --data-urlencode "From=+12542062911" 
-# --data-urlencode "StatusCallback=http://postb.in/1234abcd" 
-# --data-urlencode "To=+2347061628517" 
-# -u ACf9ada9c86ca52fd8bf1bd28236c42fbd:83161cbdc04b2c3a1471e656d914cf53
+from = '+12542062911' # Your Twilio number
+to = '+2347061628517' # Your mobile phone number
+
+client.messages.create(
+from: from,
+to: to,
+body: "Hey friend! go review some codes"
+)

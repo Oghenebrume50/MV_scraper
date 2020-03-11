@@ -2,6 +2,7 @@ require 'watir'
 
 class Login
   attr_reader :email, :password
+  
   def initialize(user)
     @email = user[:email]
     @password = user[:pass]
