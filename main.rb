@@ -1,7 +1,6 @@
 #! /usr/bin/env ruby
 
 require 'watir'
-require 'pry'
 require 'twilio-ruby'
 require 'dotenv'
 Dotenv.load
@@ -18,27 +17,14 @@ sender = SendMessage.new
 #go the code review page
 $browser.link(text: 'Code Review Requests').click
 
-1.upto(2) do |n|
-  puts n
-  puts $browser.title
+1.upto(1) do |n|
   if $browser.link(class: 'review-request-button').exist?
-
-    pp 'review dey'
-    pp $browser.link(class: 'review-request-button').exist?
-
     $browser.link(class: 'review-request-button').click
-    
     sender.send
-  end
-  pp  $browser.span(text: 'No Available Reviews').exist?
-  pp 'fjfhjhfjfjhf'
-  if $browser.button(text: 'No Available Reviews').exist?
-    pp 'no review dey'
-    pp  $browser.button(text: 'No Available Reviews').exist?
-    sender.send
+  elsif $browser.span(text: 'No Available Reviews').exist?
+    pp 'no review yet'
   end
   sleep 5 # second
 end
 
 $browser.close
-pp 'gjgjnjgk'

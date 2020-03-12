@@ -1,5 +1,3 @@
-require 'watir'
-
 class Login
   attr_reader :email, :password
   

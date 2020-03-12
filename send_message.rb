@@ -17,7 +17,7 @@ class SendMessage
       client.messages.create(
         from: from,
         to: to,
-        body: "Hey man go do impressive work with some reviews"
+        body: "Hey man go do impressive work, remember add value"
       )
     end
 end
