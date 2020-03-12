@@ -3,11 +3,11 @@ This is a project that would help me review Microverse projects on time, by chec
 
 ## TECHNOLOGIES 
 - Ruby
-  - GEMS
-    - Watir
-    - Twilio-ruby
-    - headless
-    - dotenv
+- GEMS
+  - Watir
+  - Twilio-ruby
+  - headless
+  - dotenv
     
 ## SETUP
  This project is for my productivity at my job so it is custom to me alone 
