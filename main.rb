@@ -3,37 +3,42 @@
 require 'watir'
 require 'pry'
 require 'twilio-ruby'
+require 'dotenv'
+Dotenv.load
 
 require_relative 'login.rb'
-# user = Login.new(:pass => '123younG', :email => 'raphlbrume@gmail.com')
+require_relative 'send_message.rb'
 
-# user.auth 
+#login to dashboard
+user = Login.new(:pass => ENV['password'], :email => ENV['email'])
+user.auth 
 
-# $browser.link(text: 'Code Review Requests').click
+sender = SendMessage.new
 
-# 1.upto(5) do |n|
-#   puts n
-#   if $browser.link(class: 'review-request-button').exist?
-#     $browser.link(class: 'review-request-button').click
-#   end
-#   pp 'fjfhjhfjfjhf'
-#   pp $browser.button(text: 'No Available Reviews').exist?
+#go the code review page
+$browser.link(text: 'Code Review Requests').click
 
-#   sleep 5 # second
-# end
-# puts claim_button
-# $browser.close
-# pp 'gjgjnjgk'
+1.upto(2) do |n|
+  puts n
+  puts $browser.title
+  if $browser.link(class: 'review-request-button').exist?
 
-account_sid = 'ACf9ada9c86ca52fd8bf1bd28236c42fbd'
-auth_token = '83161cbdc04b2c3a1471e656d914cf53'
-client = Twilio::REST::Client.new(account_sid, auth_token)
+    pp 'review dey'
+    pp $browser.link(class: 'review-request-button').exist?
 
-from = '+12542062911' # Your Twilio number
-to = '+2347061628517' # Your mobile phone number
+    $browser.link(class: 'review-request-button').click
+    
+    sender.send
+  end
+  pp  $browser.span(text: 'No Available Reviews').exist?
+  pp 'fjfhjhfjfjhf'
+  if $browser.button(text: 'No Available Reviews').exist?
+    pp 'no review dey'
+    pp  $browser.button(text: 'No Available Reviews').exist?
+    sender.send
+  end
+  sleep 5 # second
+end
 
-client.messages.create(
-from: from,
-to: to,
-body: "Hey friend! go review some codes"
-)
+$browser.close
+pp 'gjgjnjgk'
