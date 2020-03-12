@@ -6,7 +6,7 @@ This is a project that would help me review Microverse projects on time, by chec
   - GEMS
     -Watir
     -Twilio-ruby
-    - headless
+    -headless
     -dotenv
     
 ## SETUP
