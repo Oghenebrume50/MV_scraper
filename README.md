@@ -3,7 +3,7 @@ This is a project that would help me review Microverse projects on time, by chec
 
 ### TECHNOLOGIES 
 - Ruby
-  - GEMS
+  #GEMS
     -Watir
     -Twilio-ruby
     -headless
