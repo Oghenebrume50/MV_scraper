@@ -6,7 +6,7 @@ class Login
     @password = user[:pass]
     $browser = Watir::Browser.new :chrome, headless: true
 
-    $browser.goto 'https://dashboard.microverse.org/code_review_request'
+    $browser.goto 'https://dashboard.microverse.org/login'
   end
 
   def auth

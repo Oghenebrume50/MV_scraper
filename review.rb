@@ -1,6 +1,7 @@
 #! /usr/bin/env ruby
 
 require 'watir'
+require 'webdrivers'
 require 'twilio-ruby'
 require 'dotenv'
 Dotenv.load
@@ -18,7 +19,9 @@ sender = SendMessage.new
 $browser.link(text: 'Code Review Requests').click
 
 1.upto(170) do |n|
-  if $browser.link(class: 'review-request-button').exist?
+  if $browser.button(text: 'Submit Review').exist?
+    pp 'you should do this one first'
+  elsif $browser.link(class: 'review-request-button').exist?
     $browser.link(class: 'review-request-button').click
     sender.send
   elsif $browser.span(text: 'No Available Reviews').exist?
